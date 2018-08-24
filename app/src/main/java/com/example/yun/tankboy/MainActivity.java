@@ -2,7 +2,10 @@ package com.example.yun.tankboy;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
@@ -29,47 +32,27 @@ public class MainActivity extends AppCompatActivity{
     private FirebaseUser mFirebaseUser;
 
 
+    // 현재 월
+    public static int currentMonth = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mAuth = FirebaseAuth.getInstance();
-        mFirebaseUser = mAuth.getCurrentUser();
-        mDatabaseReference = Intro.mFirebaseDatabase.getReference("users/" + mAuth.getUid() + "/meters/");
-        getConsume();
+        // "고객명님의 몇 월 정보입니다" TextView
+        TextView currentConsumeExplainTextView = (TextView)findViewById(R.id.CurrentConsumeExplainTextView);
+        currentConsumeExplainTextView.setText(Login.userName + "님의 " + currentMonth + "월의 소비 전력량");
+        currentConsumeExplainTextView.setTextSize(Intro.width_pixel / 70);
+        // 전구 색 칠하기
+        ImageView mainLightColorImageView = (ImageView) findViewById(R.id.MainLightColorImageView);
+        mainLightColorImageView.getLayoutParams().width = (int) (Intro.width_pixel);
+        mainLightColorImageView.getLayoutParams().height = (int)(Intro.height_pixel * 0.6);
+        mainLightColorImageView.requestLayout();
 
-        mChart = (LineChart) findViewById(R.id.Linechart);
+        // 현재 사용량 표시 TextVeiw
+        TextView currentConsumeTextView = (TextView) findViewById(R.id.CurrentConsumeTextView);
+        currentConsumeExplainTextView.setTextSize(Intro.width_pixel / 70);
 
-       // mChart.setOnChartGestureListener(MainActivity.this);
-       // mChart.setOnChartValueSelectedListener(MainActivity.this);
-
-        mChart.setDragEnabled(true);
-        mChart.setScaleEnabled(false);
-
-        ArrayList<Entry> yValues = new ArrayList<>();
-        yValues.add(new Entry(0,60f));
-        yValues.add(new Entry(1,50f));
-        yValues.add(new Entry(2,70f));
-        yValues.add(new Entry(3,30f));
-        yValues.add(new Entry(4,50f));
-        yValues.add(new Entry(5,60f));
-        yValues.add(new Entry(6,65f));
-        LineDataSet set1 = new LineDataSet(yValues,"Data Set 1");
-
-        set1.setFillAlpha(110);
-
-        set1.setColor(Color.RED);
-        set1.setLineWidth(3f);
-        set1.setValueTextSize(10f);
-        set1.setValueTextColor(Color.GREEN);
-
-        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
-        dataSets.add(set1);
-
-        LineData data = new LineData(dataSets);
-
-        mChart.setData(data);
     }
 
     private void getConsume() {
