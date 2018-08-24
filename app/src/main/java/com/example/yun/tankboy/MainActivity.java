@@ -1,9 +1,14 @@
 package com.example.yun.tankboy;
 
+import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.telecom.Call;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -37,6 +42,42 @@ public class MainActivity extends AppCompatActivity{
         mFirebaseUser = mAuth.getCurrentUser();
         mDatabaseReference = Intro.mFirebaseDatabase.getReference("users/" + mAuth.getUid() + "/meters");
 
+        // 달력 버튼
+        ImageButton callendarButton = (ImageButton) findViewById(R.id.CallendarButton);
+        callendarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Callendar.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        // 비교 버튼
+        ImageButton compareButton = (ImageButton) findViewById(R.id.CompareButton);
+        compareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Callendar.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        // 팁 버튼
+        ImageButton tipButton = (ImageButton) findViewById(R.id.TipButton);
+        tipButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Tip.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
+
+/*
         // "고객명님의 몇 월 정보입니다" TextView
         TextView currentConsumeExplainTextView = (TextView)findViewById(R.id.CurrentConsumeExplainTextView);
         currentConsumeExplainTextView.setText(Login.userName + "님의 " + currentMonth + "월의 소비 전력량");
@@ -58,7 +99,7 @@ public class MainActivity extends AppCompatActivity{
         TextView currentConsumeTextView = (TextView) findViewById(R.id.CurrentConsumeTextView);
         currentConsumeExplainTextView.setTextSize(Intro.width_pixel / 70);
         getConsume();
-
+*/
     }
 
     private void getConsume() {
@@ -106,4 +147,12 @@ public class MainActivity extends AppCompatActivity{
                     }
                 });
     }
+
+    @Override
+    public void onBackPressed(){
+        Intent intent = new Intent(MainActivity.this, TargetForFee.class);
+        startActivity(intent);
+        finish();
+    }
+
 }

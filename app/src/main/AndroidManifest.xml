@@ -19,7 +19,10 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".Login" />
         <activity android:name=".Select" />
-        <activity android:name=".TargetForFee"></activity>
+        <activity android:name=".TargetForFee" />
+        <activity android:name=".Callendar" />
+        <activity android:name=".Compare" />
+        <activity android:name=".Tip"></activity>
     </application>
 
 </manifest>
