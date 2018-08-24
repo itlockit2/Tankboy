@@ -43,11 +43,12 @@ public class Login extends AppCompatActivity {
         mDatabaseReference = Intro.mDatabaseReference;
         // 로그인 설명
         TextView loginExplainTextView = (TextView) findViewById(R.id.LoginExplainTextView);
-        loginExplainTextView.setTextSize(Intro.width_pixel / 70);
+        loginExplainTextView.setTextSize(Intro.width_pixel / 30);
 
         // 고객 번호 입력
         final EditText inputCustomerNumberEditText = (EditText) findViewById(R.id.InputCustomerNumberEditText);
         inputCustomerNumberEditText.getLayoutParams().width = (int) (Intro.width_pixel * 0.3);
+        inputCustomerNumberEditText.setTextSize(Intro.width_pixel / 30);
 
         // 고객 번호 입력 버튼
         Button inputCustomerNumberButton = (Button) findViewById(R.id.InputCustomerNumberButton);

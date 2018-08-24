@@ -20,11 +20,12 @@ public class TargetForFee extends AppCompatActivity {
 
         // 로그인 설명
         TextView targetExplainTextView = (TextView) findViewById(R.id.TargetExplainTextView);
-        targetExplainTextView.setTextSize(Intro.width_pixel / 70);
+        targetExplainTextView.setTextSize(Intro.width_pixel / 30);
 
         // 고객 번호 입력
         final EditText inputTargetEditText = (EditText)findViewById(R.id.InputTargetEditText);
         inputTargetEditText.getLayoutParams().width = (int)(Intro.width_pixel * 0.3);
+        inputTargetEditText.setTextSize(Intro.width_pixel / 30);
 
         // 입력 버튼 이벤트 처리
         final Button inputTargetButton = (Button) findViewById(R.id.InputTargetButton);

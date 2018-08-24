@@ -28,87 +28,87 @@ public class Select extends AppCompatActivity {
 
         // 가전 제품 선택 설명
         TextView selectExplainTextView = (TextView) findViewById(R.id.SelectExplainTextView);
-        selectExplainTextView.setTextSize(Intro.width_pixel / 60);
+        selectExplainTextView.setTextSize(Intro.width_pixel / 23);
 
         // 에어컨 체크박스, 소비전력
         final CheckBox airConditionalCheckBox = (CheckBox) findViewById(R.id.AirConditionalCheckBox);
-        airConditionalCheckBox.setTextSize(Intro.width_pixel / 55);
+        airConditionalCheckBox.setTextSize(Intro.width_pixel / 30);
 
         final TextView airConditionalTextView = (TextView) findViewById(R.id.AirConditionalTextView);
-        airConditionalTextView.setTextSize(Intro.width_pixel / 60);
+        airConditionalTextView.setTextSize(Intro.width_pixel / 30);
 
         final EditText airConditionalEditText = (EditText) findViewById(R.id.AirConditionalEditText);
-        airConditionalEditText.setTextSize(Intro.width_pixel / 60);
+        airConditionalEditText.setTextSize(Intro.width_pixel / 30);
 
         // 히터 체크박스, 소비전력
         final CheckBox heaterCheckBox = (CheckBox) findViewById(R.id.HeaterCheckBox);
-        heaterCheckBox.setTextSize(Intro.width_pixel / 55);
+        heaterCheckBox.setTextSize(Intro.width_pixel / 30);
 
         final TextView heaterTextView = (TextView) findViewById(R.id.HeaterTextView);
-        heaterTextView.setTextSize(Intro.width_pixel / 60);
+        heaterTextView.setTextSize(Intro.width_pixel / 30);
 
         final EditText heaterEditText = (EditText) findViewById(R.id.HeaterEditText);
-        heaterEditText.setTextSize(Intro.width_pixel / 60);
+        heaterEditText.setTextSize(Intro.width_pixel / 30);
 
         // 가습기 체크박스, 소비전력
         final CheckBox humidifierCheckBox = (CheckBox) findViewById(R.id.HumidifierCheckBox);
-        humidifierCheckBox.setTextSize(Intro.width_pixel / 55);
+        humidifierCheckBox.setTextSize(Intro.width_pixel / 30);
 
         final TextView humidifierTextView = (TextView) findViewById(R.id.HumidifierTextView);
-        humidifierTextView.setTextSize(Intro.width_pixel / 60);
+        humidifierTextView.setTextSize(Intro.width_pixel / 30);
 
         final EditText humidifierEditText = (EditText) findViewById(R.id.HumidifierEditText);
-        humidifierEditText.setTextSize(Intro.width_pixel / 60);
+        humidifierEditText.setTextSize(Intro.width_pixel / 30);
 
         // 제습기 체크박스, 소비전력
         final CheckBox dehumidifierCheckBox = (CheckBox) findViewById(R.id.DehumidifierCheckBox);
-        dehumidifierCheckBox.setTextSize(Intro.width_pixel / 55);
+        dehumidifierCheckBox.setTextSize(Intro.width_pixel / 30);
 
         final TextView dehumidifierTextView = (TextView) findViewById(R.id.DehumidifierTextView);
-        dehumidifierTextView.setTextSize(Intro.width_pixel / 60);
+        dehumidifierTextView.setTextSize(Intro.width_pixel / 30);
 
         final EditText dehumidifierEditText = (EditText) findViewById(R.id.DehumidifierEditText);
-        dehumidifierEditText.setTextSize(Intro.width_pixel / 60);
+        dehumidifierEditText.setTextSize(Intro.width_pixel / 30);
 
         // 선풍기 체크박스, 소비전력
         final CheckBox fanCheckBox = (CheckBox) findViewById(R.id.FanCheckBox);
-        fanCheckBox.setTextSize(Intro.width_pixel / 55);
+        fanCheckBox.setTextSize(Intro.width_pixel / 30);
 
         final TextView fanTextView = (TextView) findViewById(R.id.FanTextView);
-        fanTextView.setTextSize(Intro.width_pixel / 60);
+        fanTextView.setTextSize(Intro.width_pixel / 30);
 
         final EditText fanEditText = (EditText) findViewById(R.id.FanEditText);
-        fanEditText.setTextSize(Intro.width_pixel / 60);
+        fanEditText.setTextSize(Intro.width_pixel / 30);
 
         // 냉장고 체크박스, 소비전력
         final CheckBox refrigeratorCheckBox = (CheckBox) findViewById(R.id.RefrigeratorCheckBox);
-        refrigeratorCheckBox.setTextSize(Intro.width_pixel / 55);
+        refrigeratorCheckBox.setTextSize(Intro.width_pixel / 30);
 
         final TextView refrigeratorTextView = (TextView) findViewById(R.id.RefrigeratorTextView);
-        refrigeratorTextView.setTextSize(Intro.width_pixel / 60);
+        refrigeratorTextView.setTextSize(Intro.width_pixel / 30);
 
         final EditText refrigeratorEditText = (EditText) findViewById(R.id.RefrigeratorEditText);
-        refrigeratorEditText.setTextSize(Intro.width_pixel / 60);
+        refrigeratorEditText.setTextSize(Intro.width_pixel / 30);
 
         // 김치 냉장고 체크박스, 소비전력
         final CheckBox kimchiRefriCheckBox = (CheckBox) findViewById(R.id.KimchiRefriCheckBox);
-        kimchiRefriCheckBox.setTextSize(Intro.width_pixel / 60);
+        kimchiRefriCheckBox.setTextSize(Intro.width_pixel / 30);
 
         final TextView kimchiRefriTextView = (TextView) findViewById(R.id.KimchiRefriTextView);
-        kimchiRefriTextView.setTextSize(Intro.width_pixel / 60);
+        kimchiRefriTextView.setTextSize(Intro.width_pixel / 30);
 
         final EditText kimchiRefriEditText = (EditText) findViewById(R.id.KimchiRefriEditText);
-        kimchiRefriEditText.setTextSize(Intro.width_pixel / 60);
+        kimchiRefriEditText.setTextSize(Intro.width_pixel / 30);
 
         // 형광등 체크박스, 소비전력
         final CheckBox lampCheckBox = (CheckBox) findViewById(R.id.LampCheckBox);
-        lampCheckBox.setTextSize(Intro.width_pixel / 55);
+        lampCheckBox.setTextSize(Intro.width_pixel / 30);
 
         final TextView lampTextView = (TextView) findViewById(R.id.LampTextView);
-        lampTextView.setTextSize(Intro.width_pixel / 60);
+        lampTextView.setTextSize(Intro.width_pixel / 30);
 
         final EditText lampEditText = (EditText) findViewById(R.id.LampEditText);
-        lampEditText.setTextSize(Intro.width_pixel / 60);
+        lampEditText.setTextSize(Intro.width_pixel / 30);
 
         // 입력 버튼 이벤트 처리
         Button inputSelectButton = (Button)findViewById(R.id.InputSelectButton);

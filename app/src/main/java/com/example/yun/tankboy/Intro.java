@@ -74,7 +74,7 @@ public class Intro extends AppCompatActivity {
 
         // 전력 컨설팅 TextView
         TextView titleTextView = (TextView) findViewById(R.id.TitleTextVeiw);
-        titleTextView.setTextSize(width_pixel / 30);
+        titleTextView.setTextSize(width_pixel / 10);
 
         // 전구 ImageView
         ImageButton introButton = (ImageButton) findViewById(R.id.IntroButton);
@@ -89,7 +89,7 @@ public class Intro extends AppCompatActivity {
 
         // 설명 TextView
         TextView introExplainTextView = (TextView) findViewById(R.id.IntroExplainTextView);
-        introExplainTextView.setTextSize(width_pixel / 60);
+        introExplainTextView.setTextSize(width_pixel / 30);
 
     }
 }

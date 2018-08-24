@@ -8,6 +8,7 @@ import android.telecom.Call;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,6 +20,8 @@ import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -41,6 +44,43 @@ public class MainActivity extends AppCompatActivity{
         mAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mAuth.getCurrentUser();
         mDatabaseReference = Intro.mFirebaseDatabase.getReference("users/" + mAuth.getUid() + "/meters");
+
+        // 메인 엑티비티 설명
+        TextView mainExplainTextView = (TextView) findViewById(R.id.MainExplainTextView);
+        mainExplainTextView.setTextSize(Intro.width_pixel/30);
+        mainExplainTextView.setText(Login.userName + " 님의 " + "시간" + " 기준 전력 컨설팅");
+
+        // 전구 이미지
+        ImageView mainLightColorImageView = (ImageView)findViewById(R.id.MainLightColorImageView);
+
+        // 전구 이미지 설명
+        TextView mainLightExplainTextView = (TextView)findViewById(R.id.MainLightExplainTextView);
+        mainLightExplainTextView.setTextSize(Intro.width_pixel/40);
+        mainLightExplainTextView.setText("8월" + "누적 사용량 : " + "1000");
+
+        // 개인별 상황 보여주기
+        TextView recommendedDailyTextView = (TextView)findViewById(R.id.RecommendedDailyTextView);
+        recommendedDailyTextView.setTextSize(Intro.width_pixel/30);
+        recommendedDailyTextView.setText("하루 권장량 : " + "11");
+
+        TextView todayValueTextView = (TextView)findViewById(R.id.TodayValueTextView);
+        todayValueTextView.setTextSize(Intro.width_pixel/30);
+        todayValueTextView.setText("오늘 하루 사용량 : " + "415");
+
+        TextView temperatureTextView = (TextView)findViewById(R.id.TemperatureTextView);
+        temperatureTextView.setTextSize(Intro.width_pixel/30);
+        temperatureTextView.setText("기온 : " + "22 ");
+
+        // 오늘의 팁 버튼
+        Button todayTipButton = (Button)findViewById(R.id.TodayTipButton);
+        todayTipButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, TodayTip.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         // 달력 버튼
         ImageButton callendarButton = (ImageButton) findViewById(R.id.CallendarButton);

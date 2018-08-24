@@ -22,7 +22,11 @@
         <activity android:name=".TargetForFee" />
         <activity android:name=".Callendar" />
         <activity android:name=".Compare" />
-        <activity android:name=".Tip"></activity>
+        <activity android:name=".Tip" />
+        <activity
+            android:name=".TodayTip"
+            android:label="@string/title_activity_today_tip"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

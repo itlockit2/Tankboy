@@ -14,12 +14,14 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/MainExplainTextView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.7"
-            android:background="#ffbb22"
             android:text="TextView"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -51,14 +53,45 @@
                     android:layout_weight="5"
                     android:background="#ff2222">
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="38.6"
+                            android:orientation="horizontal"></LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/MainLightColorImageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="152"
+                            android:background="#000000"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/mainlightcolor2" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/MainLightImageView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/mainlight2" />
+
                 </android.support.constraint.ConstraintLayout>
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/MainLightExplainTextView"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:background="#22ff31"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
                     android:text="TextView" />
             </LinearLayout>
 
@@ -69,27 +102,33 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView9"
+                    android:id="@+id/RecommendedDailyTextView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="#22ffb5"
+                    android:gravity="bottom"
+                    android:textStyle="bold"
+                    android:textColor="#000000"
                     android:text="TextView" />
 
                 <TextView
-                    android:id="@+id/textView10"
+                    android:id="@+id/TodayValueTextView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="#4b1c39"
+                    android:gravity="center_vertical"
+                    android:textStyle="bold"
+                    android:textColor="#000000"
                     android:text="TextView" />
 
                 <TextView
-                    android:id="@+id/textView11"
+                    android:id="@+id/TemperatureTextView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="#352d1d"
+                    android:gravity="top"
+                    android:textStyle="bold"
+                    android:textColor="#000000"
                     android:text="TextView" />
 
             </LinearLayout>
@@ -97,7 +136,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/TodayTipButton"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
