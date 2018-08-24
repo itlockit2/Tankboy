@@ -81,7 +81,7 @@ public class Intro extends AppCompatActivity {
         introButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intro.this, Login.class);
+                Intent intent = new Intent(Intro.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }

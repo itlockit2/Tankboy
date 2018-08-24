@@ -61,7 +61,9 @@ public class MainActivity extends AppCompatActivity{
         double currentConsumePercent = 20.0;
         subFillLayout.weight = (float) (1.93 * (100.0-currentConsumePercent));
 
-       // Text
+        TextView currentConsumePercentTextView = (TextView)findViewById(R.id.CurrentConsumePercentTextView);
+        currentConsumePercentTextView.setText(currentConsumePercent + "%");
+        currentConsumePercentTextView.setTextSize(Intro.width_pixel / 35);
 
         // 전구 이미지 설명
         TextView mainLightExplainTextView = (TextView)findViewById(R.id.MainLightExplainTextView);
