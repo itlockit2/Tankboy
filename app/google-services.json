@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "726470334593",
+    "firebase_url": "https://tankboy-a2d26.firebaseio.com",
+    "project_id": "tankboy-a2d26",
+    "storage_bucket": "tankboy-a2d26.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:726470334593:android:431ff8cda6d95d72",
+        "android_client_info": {
+          "package_name": "com.example.yun.tankboy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "726470334593-al8vrf7thsot96363cq3pvlriu68lpfd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.yun.tankboy",
+            "certificate_hash": "b15cd8d507326c8db59088348ab5e0f94421c517"
+          }
+        },
+        {
+          "client_id": "726470334593-sjpgjbob472uh71taofkiap45dqjm05j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZWPD06jGsZQ5BHP5L4VIe2R3H34v3KMA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "726470334593-sjpgjbob472uh71taofkiap45dqjm05j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
