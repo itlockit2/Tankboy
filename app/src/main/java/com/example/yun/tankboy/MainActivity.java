@@ -1,6 +1,7 @@
 package com.example.yun.tankboy;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -118,6 +119,24 @@ public class MainActivity extends AppCompatActivity{
         showOnedayRecommend(monthTimeInt,dayTimeInt);
         // 하루시작부터 지금시간까지로 탐색
         showTemperature(dayTimeInt, nowTimeInt);
+
+        // 플러스, 마이너스 버튼
+        ImageButton plusButton = (ImageButton) findViewById(R.id.PlusButton);
+        plusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        ImageButton minusButton = (ImageButton) findViewById(R.id.MinusButton);
+        minusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
 
         // 메인 엑티비티 설명
         TextView mainExplainTextView = (TextView) findViewById(R.id.MainExplainTextView);

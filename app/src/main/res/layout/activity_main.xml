@@ -14,21 +14,48 @@
         android:background="#ffffff"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/MainExplainTextView"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.7"
-            android:background="#ffffff"
-            android:gravity="center"
-            android:text="TextView"
-            android:textColor="#000000"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.032" />
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/PlusButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:padding = "5sp"
+                app:srcCompat="@drawable/plus" />
+
+            <TextView
+                android:id="@+id/MainExplainTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="10"
+                android:background="#ffffff"
+                android:gravity="center"
+                android:text="Loading.."
+                android:textColor="#000000"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.032" />
+
+            <ImageButton
+                android:id="@+id/MinusButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:padding = "5sp"
+                app:srcCompat="@drawable/minus" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout4"
@@ -101,14 +128,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="100dp"
-                        android:text="TextView"
+                        android:text="Loading.."
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="@+id/linearLayout"
-                        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
+                        app:layout_constraintTop_toTopOf="@+id/MainLightImageView" />
 
                 </android.support.constraint.ConstraintLayout>
 
@@ -118,7 +145,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="TextView"
+                    android:text="Loading.."
                     android:textColor="#000000"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -136,7 +163,7 @@
                     android:layout_weight="1"
                     android:background="#ffffff"
                     android:gravity="bottom"
-                    android:text="TextView"
+                    android:text="Loading.."
                     android:textColor="#000000"
                     android:textStyle="bold" />
 
@@ -147,7 +174,7 @@
                     android:layout_weight="1"
                     android:background="#ffffff"
                     android:gravity="center_vertical"
-                    android:text="TextView"
+                    android:text="Loading.."
                     android:textColor="#000000"
                     android:textStyle="bold" />
 
@@ -158,8 +185,8 @@
                     android:layout_weight="1"
                     android:background="#ffffff"
                     android:gravity="top"
-                    android:text="TextView"
-                    android:textColor="@android:color/transparent"
+                    android:text="Loading.."
+                    android:textColor="#000000"
                     android:textStyle="bold" />
 
             </LinearLayout>
