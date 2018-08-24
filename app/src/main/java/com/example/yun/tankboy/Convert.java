@@ -67,6 +67,9 @@ public class Convert {
     }
 
     public String reverse_won(String won_s){
+        if(Integer.parseInt(won_s) < 1130){
+            return "1";
+        }
 
         int [] set_purpose = new int [1024];
         int [] set_i = new int [1024];

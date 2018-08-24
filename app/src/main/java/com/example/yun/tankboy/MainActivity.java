@@ -1,7 +1,9 @@
 package com.example.yun.tankboy;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,19 +14,22 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -32,10 +37,18 @@ public class MainActivity extends AppCompatActivity{
 
     private LineChart mChart;
 
-    private DatabaseReference mDatabaseReference;
-    private DatabaseReference weatherDatabaseReference;
-    private FirebaseAuth mAuth;
-    private FirebaseUser mFirebaseUser;
+    private static DatabaseReference mDatabaseReference;
+    private static DatabaseReference weatherDatabaseReference;
+    private static FirebaseAuth mAuth;
+    public static FirebaseDatabase mFirebaseDatabase;
+
+    static {
+        mFirebaseDatabase = mFirebaseDatabase.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        mDatabaseReference = mFirebaseDatabase.getReference("users/" + mAuth.getUid() + "/meters");
+        weatherDatabaseReference = mFirebaseDatabase.getReference("weathers/" + Login.userLivingCode);
+    }
+
 
     // 소숫점 표현
     DecimalFormat form;
@@ -72,6 +85,12 @@ public class MainActivity extends AppCompatActivity{
     // 전력량을 금액으로 금액을 전력량으로 변환하기 위한 클래스
     Convert mConvert;
 
+    // 시간관련 데이터
+    long nowTimeInt;
+    // 한달기준 시간을 잡아준다.
+    long monthTimeInt;
+    long dayTimeInt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,9 +100,7 @@ public class MainActivity extends AppCompatActivity{
 
         // Firebase
         mAuth = FirebaseAuth.getInstance();
-        mFirebaseUser = mAuth.getCurrentUser();
-        mDatabaseReference = Intro.mFirebaseDatabase.getReference("users/" + mAuth.getUid() + "/meters");
-        weatherDatabaseReference = Intro.mFirebaseDatabase.getReference("weathers/" + Login.userLivingCode);
+
 
         // Convert
         mConvert = new Convert();
@@ -101,14 +118,14 @@ public class MainActivity extends AppCompatActivity{
 
         long adj = 10000000000L;
         // 현재시간에 1년을 빼준다.
-        long nowTimeInt = Long.parseLong(nowTime) - adj;
+        nowTimeInt = Long.parseLong(nowTime) - adj;
 
         // 한달기준 시간을 잡아준다.
-        long monthTimeInt = nowTimeInt/100000000;
+        monthTimeInt = nowTimeInt/100000000;
         monthTimeInt = monthTimeInt * 100000000;
 
         // 하루전날기준 시간을 잡아준다.
-        long dayTimeInt = nowTimeInt / 1000000;
+        dayTimeInt = nowTimeInt / 1000000;
         dayTimeInt = dayTimeInt * 1000000;
 
         // 하루그날부터 지금시간까지의 합
@@ -119,24 +136,6 @@ public class MainActivity extends AppCompatActivity{
         showOnedayRecommend(monthTimeInt,dayTimeInt);
         // 하루시작부터 지금시간까지로 탐색
         showTemperature(dayTimeInt, nowTimeInt);
-
-        // 플러스, 마이너스 버튼
-        ImageButton plusButton = (ImageButton) findViewById(R.id.PlusButton);
-        plusButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        ImageButton minusButton = (ImageButton) findViewById(R.id.MinusButton);
-        minusButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
 
         // 메인 엑티비티 설명
         TextView mainExplainTextView = (TextView) findViewById(R.id.MainExplainTextView);
@@ -216,36 +215,79 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
+        // 플러스, 마이너스 버튼
+        ImageButton plusButton = (ImageButton) findViewById(R.id.PlusButton);
+        plusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(validAddTime(nowTimeInt)){
+                    setnowTimeInt(nowTimeInt+1500);
+                } else {
+                    Toast.makeText(MainActivity.this, "현재보다 미래로 갈수는 없습니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        ImageButton minusButton = (ImageButton) findViewById(R.id.MinusButton);
+        minusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(validMinusTime(nowTimeInt)){
+                    setnowTimeInt(nowTimeInt-1500);
+                } else {
+                    Toast.makeText(MainActivity.this, "과거데이터가 존재하지 않습니다.없습니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
 
-/*
-        // "고객명님의 몇 월 정보입니다" TextView
-        TextView currentConsumeExplainTextView = (TextView)findViewById(R.id.CurrentConsumeExplainTextView);
-        currentConsumeExplainTextView.setText(Login.userName + "님의 " + currentMonth + "월의 소비 전력량");
-        currentConsumeExplainTextView.setTextSize(Intro.width_pixel / 70);
-        // 전구 색 칠하기
-        ImageView mainLightImageView = (ImageView) findViewById(R.id.MainLightImageView);
-        mainLightImageView.getLayoutParams().width = (int) (Intro.width_pixel);
-        mainLightImageView.getLayoutParams().height = (int) (Intro.height_pixel * 0.5);
-
-        ImageView mainLightColorImageView = (ImageView) findViewById(R.id.MainLightColorImageView);
-        mainLightColorImageView.getLayoutParams().width = (int) (Intro.width_pixel);
-        mainLightColorImageView.getLayoutParams().height = (int)(Intro.height_pixel * 0.5 * 0.9 * 0.7);
-        mainLightColorImageView.requestLayout();
-
-        Animation fillLightAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fill);
-        mainLightColorImageView.startAnimation(fillLightAnimation);
-
-        // 현재 사용량 표시 TextVeiw
-        TextView currentConsumeTextView = (TextView) findViewById(R.id.CurrentConsumeTextView);
-        currentConsumeExplainTextView.setTextSize(Intro.width_pixel / 70);
-        getConsume();
-*/
     }
+    // 시간 검증
+    private boolean validAddTime(final long currentTime){
+        long changeTime = currentTime + 1500;
+        if(currentTime < changeTime ){
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    // 시간 검증
+    private boolean validMinusTime(final long currentTime){
+        long changeTime = currentTime - 1500;
+        if(changeTime < 20170701000000L ){
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+
+    // 시간 재설정
+    private void setnowTimeInt(long time){
+        monthList = new ArrayList<>();
+        dayList = new ArrayList<>();
+        nowTimeInt = time;
+        // 한달기준 시간을 잡아준다.
+        monthTimeInt = nowTimeInt/100000000;
+        monthTimeInt = monthTimeInt * 100000000;
+
+        // 하루전날기준 시간을 잡아준다.
+        dayTimeInt = nowTimeInt / 1000000;
+        dayTimeInt = dayTimeInt * 1000000;
+
+        // 하루그날부터 지금시간까지의 합
+        showOnedayUse(dayTimeInt, nowTimeInt);
+        // 한달시작부터 지금시간까지의 합
+        showMonthUse(monthTimeInt,nowTimeInt);
+        // 한달시작부터 전날까지의 합
+        showOnedayRecommend(monthTimeInt,dayTimeInt);
+        // 하루시작부터 지금시간까지로 탐색
+        showTemperature(dayTimeInt, nowTimeInt);
+    }
+
     // 기온 업데이트
     private void showTemperature(final long compareInt,final long nowTimeLong){
-        System.out.println("compareInt = " + compareInt);
-        System.out.println("nowTimeLong = " + nowTimeLong);
         weatherDatabaseReference
                 .addChildEventListener(new ChildEventListener() {
                     @Override
@@ -253,10 +295,8 @@ public class MainActivity extends AppCompatActivity{
                         // 최신시간 온도 탐색
                         if(compareInt <= Long.parseLong(dataSnapshot.getKey())
                                 && Long.parseLong(dataSnapshot.getKey()) <= nowTimeLong ){
-                            System.out.println("Long.parseLong(dataSnapshot.getKey()) = " + Long.parseLong(dataSnapshot.getKey()));
                             Weather weather = dataSnapshot.getValue(Weather.class);
                             updateTemperature(weather.getTemperature());
-                            System.out.println("weather.getTemperature())" + weather.getTemperature());
                         }
                     }
                     @Override
@@ -370,8 +410,6 @@ public class MainActivity extends AppCompatActivity{
         // 하루 권장량은 한달 권장량 - 그 절날까지의 총 사용량 / 남은날
         double onedayRecommend = (targetForFee - dayUserData) / (remainDay * 1000);
         recommendedDailyTextView.setText("하루 권장량 : " + form.format(onedayRecommend) + "kw");
-        System.out.println("TagetForFee = " + targetForFee);
-        System.out.println("dayUserData = " + dayUserData);
     }
 
     // 전구의 색 충전
@@ -388,12 +426,21 @@ public class MainActivity extends AppCompatActivity{
         int monthUserData = getSumList(monthList);
         mainLightExplainTextView.setTextSize(Intro.width_pixel/40);
         mainLightExplainTextView.setText("8월" + "누적 사용량 : " + form.format((monthUserData/1000)) + "kw");
+        if(monthUserData/1000 > 80) {
+            HashMap<String, String> map = new HashMap<>();
+            map.put("전력분석", "이달의 누적사용량의 80%에 도달하였습니다. 목표 달성을 위해 신중을 기해주세요");
+            startAlarm(map);
+        } else if(monthUserData/1000 > 100){
+            HashMap<String, String> map = new HashMap<>();
+            map.put("전력분석", "이달의 누적사용량의 100%를 초과하였습니다. 다음 누진세까지 XX 입니다. 참고해주세요.");
+            startAlarm(map);
+        }
     }
-
+    // 리스트에 데이터 추가
     private void addList(ArrayList<Integer> list, int number){
         list.add(number);
     }
-
+    // ArrayList 합계 계산
     private int getSumList(ArrayList<Integer> list){
         int sum = 0;
         for(int i = 0 ; i < list.size() ; i++){
@@ -401,52 +448,26 @@ public class MainActivity extends AppCompatActivity{
         }
         return sum;
     }
+    // 알람 계산
+    private void startAlarm(HashMap<String,String> map) {
+        AlarmManager manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        Intent myIntent;
+        PendingIntent pendingIntent;
 
+        myIntent = new Intent(MainActivity.this,AlarmNotificationReceiver.class);
 
-    private void getConsume() {
-        mDatabaseReference
-                .addChildEventListener(new ChildEventListener() {
-                    @Override
-                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                        if(dataSnapshot.getKey().equals("20170831211500")){
-                            Meter meter = dataSnapshot.getValue(Meter.class);
-                            System.out.println("getAccConsumption = " + meter.getAccConsumption());
-                            System.out.println("getCurConsumption = " + meter.getCurConsumption());
-                            String year = dataSnapshot.getKey().substring(0,4);
-                            String month = dataSnapshot.getKey().substring(4,6);
-                            String day = dataSnapshot.getKey().substring(6,8);
-                            String hour = dataSnapshot.getKey().substring(8,10);
-                            String minutes = dataSnapshot.getKey().substring(10,12);
-                            System.out.println("year = " +  year);
-                            System.out.println("month = " +  month);
-                            System.out.println("day = " +  day);
-                            System.out.println("hour = " +  hour);
-                            System.out.println("minutes = " +  minutes);
+        Bundle b = new Bundle();
+        for(String key : map.keySet()){
+            String value = map.get(key);
+            b.putString(key, value);
+        }
+        myIntent.putExtra("tips", b);
 
-                            return;
-                        }
-                    }
-
-                    @Override
-                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-                    }
-
-                    @Override
-                    public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-                    }
-
-                    @Override
-                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
+        pendingIntent = PendingIntent.getBroadcast(this,0,myIntent,0);
+        Calendar calendar = Calendar.getInstance();
+        //manager.setRepeating(AlarmManager.RTC_WAKEUP,SystemClock.elapsedRealtime()+3000,5*1000,pendingIntent);
+        //manager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),60*1000,pendingIntent);
+        manager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),pendingIntent);
     }
 
     @Override
@@ -455,5 +476,4 @@ public class MainActivity extends AppCompatActivity{
         startActivity(intent);
         finish();
     }
-
 }
