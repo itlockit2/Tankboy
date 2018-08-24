@@ -17,7 +17,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        TextView t = (TextView) findViewById(R.id.tt);
+        String dfdf = "" + TargetForFee.targetForFee;
+        t.setText(dfdf);
 
     }
 

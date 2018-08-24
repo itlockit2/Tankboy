@@ -68,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:text="소비전력" />
+                    android:text="소비전력(W)" />
 
                 <EditText
                     android:id="@+id/AirConditionalEditText"
@@ -78,7 +78,7 @@
                     android:ems="10"
                     android:gravity="center"
                     android:inputType="number"
-                    android:hint="000"
+                    android:hint="1800"
                     android:textColor="#919191" />
             </LinearLayout>
 
@@ -101,7 +101,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:text="소비전력" />
+                    android:text="소비전력(W)" />
 
                 <EditText
                     android:id="@+id/HeaterEditText"
@@ -111,7 +111,8 @@
                     android:ems="10"
                     android:gravity="center"
                     android:inputType="number"
-                    android:hint="000"
+                    android:hint="1500"
+                    android:text=""
                     android:textColor="#919191" />
             </LinearLayout>
 
@@ -134,7 +135,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:text="소비전력" />
+                    android:text="소비전력(W)" />
 
                 <EditText
                     android:id="@+id/HumidifierEditText"
@@ -144,7 +145,8 @@
                     android:ems="10"
                     android:gravity="center"
                     android:inputType="number"
-                    android:hint="000"
+                    android:hint="40"
+                    android:text=""
                     android:textColor="#919191" />
             </LinearLayout>
 
@@ -167,7 +169,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:text="소비전력" />
+                    android:text="소비전력(W)" />
 
                 <EditText
                     android:id="@+id/DehumidifierEditText"
@@ -177,7 +179,8 @@
                     android:ems="10"
                     android:gravity="center"
                     android:inputType="number"
-                    android:hint="000"
+                    android:hint="300"
+                    android:text=""
                     android:textColor="#919191" />
             </LinearLayout>
 
@@ -200,7 +203,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:text="소비전력" />
+                    android:text="소비전력(W)" />
 
                 <EditText
                     android:id="@+id/FanEditText"
@@ -210,7 +213,8 @@
                     android:ems="10"
                     android:gravity="center"
                     android:inputType="number"
-                    android:hint="000"
+                    android:hint="60"
+                    android:text=""
                     android:textColor="#919191" />
             </LinearLayout>
 
@@ -233,7 +237,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:text="소비전력" />
+                    android:text="소비전력(W)" />
 
                 <EditText
                     android:id="@+id/RefrigeratorEditText"
@@ -243,7 +247,8 @@
                     android:ems="10"
                     android:gravity="center"
                     android:inputType="number"
-                    android:hint="000"
+                    android:hint="100"
+                    android:text=""
                     android:textColor="#919191" />
             </LinearLayout>
 
@@ -266,7 +271,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:text="소비전력" />
+                    android:text="소비전력(W)" />
 
                 <EditText
                     android:id="@+id/KimchiRefriEditText"
@@ -276,7 +281,8 @@
                     android:ems="10"
                     android:gravity="center"
                     android:inputType="number"
-                    android:hint="000"
+                    android:hint="30"
+                    android:text=""
                     android:textColor="#919191" />
             </LinearLayout>
 
@@ -299,7 +305,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:text="소비전력" />
+                    android:text="소비전력(W)" />
 
                 <EditText
                     android:id="@+id/LampEditText"
@@ -309,7 +315,8 @@
                     android:ems="10"
                     android:gravity="center"
                     android:inputType="number"
-                    android:hint="000"
+                    android:hint="20"
+                    android:text=""
                     android:textColor="#919191" />
             </LinearLayout>
 

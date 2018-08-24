@@ -46,6 +46,7 @@ public class Login extends AppCompatActivity {
         // 파이어 베이스 인증 객체
         mAuth = FirebaseAuth.getInstance();
         mDatabaseReference =  mFirebaseDatabase.getReference("users/");
+
         // 로그인 설명
         TextView loginExplainTextView = (TextView) findViewById(R.id.LoginExplainTextView);
         loginExplainTextView.setTextSize(Intro.width_pixel / 70);

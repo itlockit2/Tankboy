@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +21,7 @@ public class Select extends AppCompatActivity {
 
     // 각 가전 제품 map (key-이름 , value-소비전력)
     public static Map<String, Integer> homeAppliancesList = new HashMap<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,7 +130,7 @@ public class Select extends AppCompatActivity {
                 addHomeAppliancesList(lampCheckBox, lampEditText);
 
                 // mainActivity로 전환
-                Intent intent = new Intent(Select.this, MainActivity.class);
+                Intent intent = new Intent(Select.this, TargetForFee.class);
                 startActivity(intent);
                 finish();
 
@@ -137,8 +139,14 @@ public class Select extends AppCompatActivity {
     }
 
     protected void addHomeAppliancesList(CheckBox c, EditText e){
+        String s = e.getText().toString();
         if(c.isChecked()){
-            homeAppliancesList.put(c.getText().toString(), Integer.parseInt(e.getText().toString()));
+
+            if(e.getText().toString().equals(""))
+                homeAppliancesList.put(c.getText().toString(), Integer.parseInt(e.getHint().toString()));
+            else
+                homeAppliancesList.put(c.getText().toString(), Integer.parseInt(e.getText().toString()));
+
         }
         c.setChecked(false);
     }
