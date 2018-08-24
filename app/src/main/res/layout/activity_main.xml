@@ -12,31 +12,36 @@
         android:id="@+id/CurrentConsumeExplainTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginTop="20dp"
         android:text="text"
         android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/MainLightColorImageView"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/MainLightColorImageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/CurrentConsumeTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CurrentConsumeExplainTextView"
+        app:layout_constraintVertical_bias="0.497"
         app:srcCompat="@drawable/mainlightcolor" />
 
     <ImageView
         android:id="@+id/MainLightImageView"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/CurrentConsumeTextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CurrentConsumeExplainTextView"
         app:srcCompat="@drawable/mainlight" />
@@ -44,14 +49,17 @@
     <TextView
         android:id="@+id/CurrentConsumeTextView"
         android:layout_width="0dp"
-        android:layout_height="18dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="21dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
         android:text="TextView"
         android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MainLightImageView" />
+        app:layout_constraintTop_toTopOf="@+id/CurrentConsumeExplainTextView"
+        app:layout_constraintVertical_bias="0.656" />
 
     <com.github.mikephil.charting.charts.LineChart
         android:layout_width="match_parent"
