@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,8 +30,13 @@ public class Login extends AppCompatActivity {
         // 파이어 베이스 인증 객체
         mAuth = FirebaseAuth.getInstance();
 
+        // 로그인 설명
+        TextView loginExplainTextView = (TextView) findViewById(R.id.LoginExplainTextView);
+        loginExplainTextView.setTextSize(Intro.width_pixel / 70);
+
         // 고객 번호 입력
         final EditText inputCustomerNumberEditText = (EditText)findViewById(R.id.InputCustomerNumberEditText);
+        inputCustomerNumberEditText.getLayoutParams().width = (int)(Intro.width_pixel * 0.3);
 
         // 고객 번호 입력 버튼
         Button inputCustomerNumberButton = (Button)findViewById(R.id.InputCustomerNumberButton);

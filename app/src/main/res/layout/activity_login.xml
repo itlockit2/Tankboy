@@ -7,26 +7,70 @@
     android:background="#ffbb33"
     tools:context=".Login">
 
+    <ImageView
+        android:id="@+id/LoginLightImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/light" />
+
+    <TextView
+        android:id="@+id/LoginExplainTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:text="고객 번호를 입력해주세요."
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textColor="#ffffff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.224" />
+
     <EditText
         android:id="@+id/InputCustomerNumberEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="162dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
+        android:inputType="text|textPersonName"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/InputCustomerNumberButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/LoginExplainTextView" />
 
     <Button
         android:id="@+id/InputCustomerNumberButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="48dp"
-        android:layout_marginRight="48dp"
-        android:layout_marginTop="23dp"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="@+id/InputCustomerNumberEditText"
-        app:layout_constraintTop_toBottomOf="@+id/InputCustomerNumberEditText" />
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="입력"
+        android:textColor="#ffbb33"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:background="#ffffff"
+        app:layout_constraintBottom_toBottomOf="@+id/LoginLightImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/LoginLightImageView"
+        app:layout_constraintVertical_bias="0.467" />
+
 </android.support.constraint.ConstraintLayout>
