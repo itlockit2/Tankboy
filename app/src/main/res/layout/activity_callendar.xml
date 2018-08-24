@@ -23,10 +23,20 @@
             android:orientation="horizontal">
 
             <android.support.constraint.ConstraintLayout
+                android:id="@+id/chartLayout"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:background="#2255ff"
-                android:layout_weight="1">
+                android:layout_weight="2"
+                android:background="#2255ff">
+
+                <com.github.mikephil.charting.charts.LineChart xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/RealChart"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </android.support.constraint.ConstraintLayout>
 
