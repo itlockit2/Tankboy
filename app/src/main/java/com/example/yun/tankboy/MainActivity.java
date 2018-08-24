@@ -1,25 +1,17 @@
 package com.example.yun.tankboy;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -39,6 +31,10 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mAuth.getCurrentUser();
+        mDatabaseReference = Intro.mFirebaseDatabase.getReference("users/" + mAuth.getUid() + "/meters");
+
         // "고객명님의 몇 월 정보입니다" TextView
         TextView currentConsumeExplainTextView = (TextView)findViewById(R.id.CurrentConsumeExplainTextView);
         currentConsumeExplainTextView.setText(Login.userName + "님의 " + currentMonth + "월의 소비 전력량");
@@ -52,6 +48,7 @@ public class MainActivity extends AppCompatActivity{
         // 현재 사용량 표시 TextVeiw
         TextView currentConsumeTextView = (TextView) findViewById(R.id.CurrentConsumeTextView);
         currentConsumeExplainTextView.setTextSize(Intro.width_pixel / 70);
+        getConsume();
 
     }
 
