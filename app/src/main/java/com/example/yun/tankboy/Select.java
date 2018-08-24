@@ -28,7 +28,7 @@ public class Select extends AppCompatActivity {
 
         // 가전 제품 선택 설명
         TextView selectExplainTextView = (TextView) findViewById(R.id.SelectExplainTextView);
-        selectExplainTextView.setTextSize(Intro.width_pixel / 23);
+        selectExplainTextView.setTextSize(Intro.width_pixel / 35);
 
         // 에어컨 체크박스, 소비전력
         final CheckBox airConditionalCheckBox = (CheckBox) findViewById(R.id.AirConditionalCheckBox);

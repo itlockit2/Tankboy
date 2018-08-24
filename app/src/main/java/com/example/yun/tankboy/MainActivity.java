@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -50,8 +51,17 @@ public class MainActivity extends AppCompatActivity{
         mainExplainTextView.setTextSize(Intro.width_pixel/30);
         mainExplainTextView.setText(Login.userName + " 님의 " + "시간" + " 기준 전력 컨설팅");
 
-        // 전구 이미지
+        // 전구 색 채우기
         ImageView mainLightColorImageView = (ImageView)findViewById(R.id.MainLightColorImageView);
+        LinearLayout.LayoutParams mainLightColorLayout = (LinearLayout.LayoutParams)mainLightColorImageView.getLayoutParams();
+        mainLightColorLayout.weight = 152;
+
+        TextView subFill = (TextView)findViewById(R.id.SubFill);
+        LinearLayout.LayoutParams subFillLayout = (LinearLayout.LayoutParams)subFill.getLayoutParams();
+        double currentConsumePercent = 20.0;
+        subFillLayout.weight = (float) (1.93 * (100.0-currentConsumePercent));
+
+       // Text
 
         // 전구 이미지 설명
         TextView mainLightExplainTextView = (TextView)findViewById(R.id.MainLightExplainTextView);

@@ -50,26 +50,30 @@
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="5"
-                    android:background="#ff2222">
+                    android:layout_weight="5">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        android:id="@+id/linearLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                        <LinearLayout
+                        <TextView
+                            android:id="@+id/SubFill"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="38.6"
-                            android:orientation="horizontal"></LinearLayout>
+                            android:layout_weight="16"
+                            android:text="" />
 
                         <ImageView
                             android:id="@+id/MainLightColorImageView"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="152"
-                            android:background="#000000"
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/mainlightcolor2" />
 
@@ -77,10 +81,32 @@
 
                     <ImageView
                         android:id="@+id/MainLightImageView"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
                         android:scaleType="fitCenter"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/mainlight2" />
+
+                    <TextView
+                        android:id="@+id/CurrentConsumePercentTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginLeft="64dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginStart="64dp"
+                        android:layout_marginTop="60dp"
+                        android:text="TextView"
+                        app:layout_constraintBottom_toBottomOf="@+id/MainLightImageView"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.048"
+                        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+                        app:layout_constraintTop_toTopOf="@+id/linearLayout"
+                        app:layout_constraintVertical_bias="0.0" />
 
                 </android.support.constraint.ConstraintLayout>
 
