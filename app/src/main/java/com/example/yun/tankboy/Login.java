@@ -24,6 +24,7 @@ public class Login extends AppCompatActivity {
 
     public static String clientNumber;
     public static String userName;
+    public static int userLivingCode;
 
     private FirebaseAuth mAuth;
     private FirebaseUser mFirebaseUser;
@@ -102,6 +103,7 @@ public class Login extends AppCompatActivity {
                         if (mFirebaseUser.getUid().equals(dataSnapshot.getKey())) {
                             User user = dataSnapshot.getValue(User.class);
                             userName = user.getUsername();
+                            userLivingCode = user.getWeatherAreaCode();
                             Toast.makeText(Login.this, userName + "님 안녕하세요", Toast.LENGTH_SHORT).show();
                             return;
                         } else {
