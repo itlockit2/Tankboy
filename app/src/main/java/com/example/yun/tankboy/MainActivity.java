@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -134,6 +136,9 @@ public class MainActivity extends AppCompatActivity{
         subFillLayout.weight = (float) (1.93 * (100.0-currentConsumePercent));
         currentConsumePercentTextView = (TextView)findViewById(R.id.CurrentConsumePercentTextView);
 
+        Animation fillLightAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fill);
+        mainLightColorImageView.startAnimation(fillLightAnimation);
+
         // 전구 이미지 설명
         mainLightExplainTextView = (TextView)findViewById(R.id.MainLightExplainTextView);
 
@@ -175,7 +180,7 @@ public class MainActivity extends AppCompatActivity{
         compareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Callendar.class);
+                Intent intent = new Intent(MainActivity.this, Compare.class);
                 startActivity(intent);
                 finish();
             }
