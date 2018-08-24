@@ -65,10 +65,13 @@ public class MainActivity extends AppCompatActivity{
         currentConsumePercentTextView.setText(currentConsumePercent + "%");
         currentConsumePercentTextView.setTextSize(Intro.width_pixel / 35);
 
+        Animation fillLightAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fill);
+        mainLightColorImageView.startAnimation(fillLightAnimation);
+
         // 전구 이미지 설명
         TextView mainLightExplainTextView = (TextView)findViewById(R.id.MainLightExplainTextView);
         mainLightExplainTextView.setTextSize(Intro.width_pixel/40);
-        mainLightExplainTextView.setText("8월" + "누적 사용량 : " + "1000");
+        mainLightExplainTextView.setText("8월" + " 누적 사용량 : " + "1000");
 
         // 개인별 상황 보여주기
         TextView recommendedDailyTextView = (TextView)findViewById(R.id.RecommendedDailyTextView);
@@ -110,7 +113,7 @@ public class MainActivity extends AppCompatActivity{
         compareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Callendar.class);
+                Intent intent = new Intent(MainActivity.this, Compare.class);
                 startActivity(intent);
                 finish();
             }
