@@ -23,8 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class Login extends AppCompatActivity {
 
-    private String clientNumber;
-    private String userName;
+    public static String clientNumber;
+    public static String userName;
 
     private FirebaseAuth mAuth;
     private static FirebaseDatabase mFirebaseDatabase;
