@@ -1,33 +1,78 @@
 package com.example.yun.tankboy;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 
 public class Callendar extends AppCompatActivity {
+
+    private DatabaseReference mDatabaseReference;
+    private FirebaseAuth mAuth;
+    public  FirebaseDatabase mFirebaseDatabase;
+
+    // 시간관련 데이터
+    long nowTimeInt;
+    // 한달기준 시간을 잡아준다.
+    long monthTimeInt;
+    long dayTimeInt;
+
+    // 한달 누적량 체크
+    private ArrayList<Double> hourList;
+
+    // 시스템으로부터 현재시간(ms) 가져오기
+    private long now;
+    Date date;
+    SimpleDateFormat sdfNow;
+    String nowTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_callendar);
 
+
+        // Firebase
+        mFirebaseDatabase = mFirebaseDatabase.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        mDatabaseReference = mFirebaseDatabase.getReference("users/" + mAuth.getUid() + "/meters");
+
+        // 시간데이터들 초기화
+        now = System.currentTimeMillis();
+        date = new Date(now);
+        sdfNow = new SimpleDateFormat("yyyyMMddHHmmss");
+        nowTime = sdfNow.format(date);
+
+        long adj = 10000000000L;
+        // 현재시간에 1년을 빼준다.
+        nowTimeInt = Long.parseLong(nowTime) - adj;
+
+        // 한달기준 시간을 잡아준다.
+        monthTimeInt = nowTimeInt/100000000;
+        monthTimeInt = monthTimeInt * 100000000;
+
+        // 하루전날기준 시간을 잡아준다.
+        dayTimeInt = nowTimeInt / 1000000;
+        dayTimeInt = dayTimeInt * 1000000;
         final int clickedDay;
 
         // 버튼 이벤트
@@ -35,10 +80,36 @@ public class Callendar extends AppCompatActivity {
         button04.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 차트
-                //drawChart(dailyData);
+                showOnedayUse(20180801000000L,20180802000000L,hourList);
+                drawChart(hourList);
             }
         });
+    }
+
+    // 하루 누적 사용량 계산
+    private void showOnedayUse(final long compareInt, final long nowTimeLong, final ArrayList<Double> hourList){
+        mDatabaseReference
+                .addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                        Long key = Long.parseLong(dataSnapshot.getKey());
+                        if(compareInt <= key
+                                && key <= nowTimeLong ){
+                            if(key % 10000 == 0){
+                                Meter meter = dataSnapshot.getValue(Meter.class);
+                                hourList.add((double)meter.getAccConsumption());
+                            }
+                        }
+                    }
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {}
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {}
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {}
+                });
     }
 
     private void drawChart(ArrayList<Double> list){
@@ -62,7 +133,7 @@ public class Callendar extends AppCompatActivity {
 
 
         for(int i = 0 ; i <= 23 ; i++){
-            entries.add(new Entry(i, (float) list.indexOf(i));
+            entries.add(new Entry(i, (float) list.indexOf(i)));
         }
 
         LineDataSet dataSet = new LineDataSet(entries, "Label");

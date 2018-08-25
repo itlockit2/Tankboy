@@ -1,10 +1,12 @@
 package com.example.yun.tankboy;
 
 import android.app.AlarmManager;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
@@ -30,24 +32,25 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity{
+    Random randomGenerator;
 
     private static final String TAG = "MainActivity";
 
     private LineChart mChart;
 
-    private static DatabaseReference mDatabaseReference;
-    private static DatabaseReference weatherDatabaseReference;
-    private static FirebaseAuth mAuth;
-    public static FirebaseDatabase mFirebaseDatabase;
+    private   DatabaseReference mDatabaseReference;
+    private   DatabaseReference weatherDatabaseReference;
+    private   FirebaseAuth mAuth;
+    public    FirebaseDatabase mFirebaseDatabase;
+    NotificationManager nm;
 
-    static {
-        mFirebaseDatabase = mFirebaseDatabase.getInstance();
-        mAuth = FirebaseAuth.getInstance();
-        mDatabaseReference = mFirebaseDatabase.getReference("users/" + mAuth.getUid() + "/meters");
-        weatherDatabaseReference = mFirebaseDatabase.getReference("weathers/" + Login.userLivingCode);
-    }
+    NotificationCompat.Builder notification;
+    private static final int uniqueID = 6412;
+
+
 
 
     // 소숫점 표현
@@ -96,11 +99,16 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        randomGenerator = new Random();
         form = new DecimalFormat("#.##");
+        notification.setAutoCancel(true);
 
+        nm = (NotificationManager) getSystemService (NOTIFICATION_SERVICE);
         // Firebase
+        mFirebaseDatabase = mFirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
-
+        mDatabaseReference = mFirebaseDatabase.getReference("users/" + mAuth.getUid() + "/meters");
+        weatherDatabaseReference = mFirebaseDatabase.getReference("weathers/" + Login.userLivingCode);
 
         // Convert
         mConvert = new Convert();
@@ -215,53 +223,7 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-        // 플러스, 마이너스 버튼
-        ImageButton plusButton = (ImageButton) findViewById(R.id.PlusButton);
-        plusButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(validAddTime(nowTimeInt)){
-                    setnowTimeInt(nowTimeInt+1500);
-                } else {
-                    Toast.makeText(MainActivity.this, "현재보다 미래로 갈수는 없습니다.", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        ImageButton minusButton = (ImageButton) findViewById(R.id.MinusButton);
-        minusButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(validMinusTime(nowTimeInt)){
-                    setnowTimeInt(nowTimeInt-1500);
-                } else {
-                    Toast.makeText(MainActivity.this, "과거데이터가 존재하지 않습니다.없습니다.", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-
     }
-    // 시간 검증
-    private boolean validAddTime(final long currentTime){
-        long changeTime = currentTime + 1500;
-        if(currentTime < changeTime ){
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    // 시간 검증
-    private boolean validMinusTime(final long currentTime){
-        long changeTime = currentTime - 1500;
-        if(changeTime < 20170701000000L ){
-            return false;
-        } else {
-            return true;
-        }
-    }
-
 
     // 시간 재설정
     private void setnowTimeInt(long time){
@@ -383,7 +345,13 @@ public class MainActivity extends AppCompatActivity{
     }
     // 기온 데이터
     private void updateTemperature(double temp){
+        double randomDouble = randomGenerator.nextDouble();
+        randomDouble = randomDouble * 1.2 + 1;
         temperatureTextView.setText("기온 : " + form.format(temp));
+        if(temp > 30){
+            Toast.makeText(this, "날씨가 더운 오늘 목표치를 위해서는 에어컨을"  + form.format(randomDouble) + "시간 틀어야 합니다.", Toast.LENGTH_SHORT).show();
+
+        }
     }
 
     // 오늘 하루 사용량
@@ -426,14 +394,12 @@ public class MainActivity extends AppCompatActivity{
         int monthUserData = getSumList(monthList);
         mainLightExplainTextView.setTextSize(Intro.width_pixel/40);
         mainLightExplainTextView.setText("8월" + "누적 사용량 : " + form.format((monthUserData/1000)) + "kw");
-        if(monthUserData/1000 > 80) {
-            HashMap<String, String> map = new HashMap<>();
-            map.put("전력분석", "이달의 누적사용량의 80%에 도달하였습니다. 목표 달성을 위해 신중을 기해주세요");
-            startAlarm(map);
-        } else if(monthUserData/1000 > 100){
-            HashMap<String, String> map = new HashMap<>();
-            map.put("전력분석", "이달의 누적사용량의 100%를 초과하였습니다. 다음 누진세까지 XX 입니다. 참고해주세요.");
-            startAlarm(map);
+        if((monthUserData/1000) > 201 ) {
+            Toast.makeText(this, "누적 사용량이 201을 초과하여 누진세 등급이 한단계 올라갑니다.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "현재 예상 전기료는 = " + mConvert.Cost((int)monthUserData) + " 입니다."  , Toast.LENGTH_SHORT).show();
+        } else if((monthUserData/1000) > 401){
+            Toast.makeText(this, "누적 사용량이 401을 초과하여 누진세 등급이 한단계 올라갑니다. " , Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "현재 예상 전기료는 = " + mConvert.Cost((int)monthUserData) + " 입니다."  , Toast.LENGTH_SHORT).show();
         }
     }
     // 리스트에 데이터 추가
