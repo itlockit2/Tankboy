@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -29,7 +29,11 @@
             android:name=".TodayTip"
             android:label="@string/title_activity_today_tip"
             android:theme="@style/AppTheme.NoActionBar" />
+<<<<<<< HEAD
         <receiver android:name=".AlarmNotificationReceiver"/>
+=======
+        <activity android:name=".TimeChange"></activity>
+>>>>>>> 7b759e5e6264c089908f75cffe5f26b70fd9b28a
     </application>
 
 

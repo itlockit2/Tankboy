@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity{
         // 메인 엑티비티 설명
         TextView mainExplainTextView = (TextView) findViewById(R.id.MainExplainTextView);
         mainExplainTextView.setTextSize(Intro.width_pixel/30);
-        mainExplainTextView.setText(Login.userName + " 님의 " + "시간" + " 기준 전력 컨설팅");
+        mainExplainTextView.setText(Login.userName + " 님의 실시간 전력 컨설팅");
 
         // 전구 색 채우기
         ImageView mainLightColorImageView = (ImageView)findViewById(R.id.MainLightColorImageView);
@@ -223,30 +223,22 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
+
+
+
+
+    }
+    // 시간 검증
+    private boolean validAddTime(final long currentTime){
+        long changeTime = currentTime + 1500;
+        if(currentTime < changeTime ){
+            return false;
+        } else {
+            return true;
+        }
     }
 
-    // 시간 재설정
-    private void setnowTimeInt(long time){
-        monthList = new ArrayList<>();
-        dayList = new ArrayList<>();
-        nowTimeInt = time;
-        // 한달기준 시간을 잡아준다.
-        monthTimeInt = nowTimeInt/100000000;
-        monthTimeInt = monthTimeInt * 100000000;
 
-        // 하루전날기준 시간을 잡아준다.
-        dayTimeInt = nowTimeInt / 1000000;
-        dayTimeInt = dayTimeInt * 1000000;
-
-        // 하루그날부터 지금시간까지의 합
-        showOnedayUse(dayTimeInt, nowTimeInt);
-        // 한달시작부터 지금시간까지의 합
-        showMonthUse(monthTimeInt,nowTimeInt);
-        // 한달시작부터 전날까지의 합
-        showOnedayRecommend(monthTimeInt,dayTimeInt);
-        // 하루시작부터 지금시간까지로 탐색
-        showTemperature(dayTimeInt, nowTimeInt);
-    }
 
     // 기온 업데이트
     private void showTemperature(final long compareInt,final long nowTimeLong){
