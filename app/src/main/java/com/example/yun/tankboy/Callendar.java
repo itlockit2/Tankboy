@@ -28,20 +28,15 @@ public class Callendar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_callendar);
 
-        final int clickedDay;
+        // 몇 월인지 보여줌
+        TextView monthTextView = (TextView) findViewById(R.id.MonthTextView);
+        monthTextView.setTextSize(Intro.width_pixel / 30);
 
-        // 버튼 이벤트
-        final Button button04 = (Button) findViewById(R.id.button4);
-        button04.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 차트
-                //drawChart(dailyData);
-            }
-        });
+        // 차트 그리기
+        drawChart();
     }
 
-    private void drawChart(ArrayList<Double> list){
+    private void drawChart(){
         LineChart chart1 = (LineChart) findViewById(R.id.RealChart);
 
         chart1.setDrawGridBackground(false);
@@ -60,10 +55,36 @@ public class Callendar extends AppCompatActivity {
         List<Entry> entries = new ArrayList<Entry>();
 
 
+        entries.add(new Entry(0, 344));
+        entries.add(new Entry(1, 287));
+        entries.add(new Entry(2, 242));
+        entries.add(new Entry(3, 220));
+        entries.add(new Entry(4, 211));
+        entries.add(new Entry(5, 203));
+        entries.add(new Entry(6, 211));
+        entries.add(new Entry(7, 203));
+        entries.add(new Entry(8, 273));
+        entries.add(new Entry(9, 291));
+        entries.add(new Entry(10, 291));
+        entries.add(new Entry(11, 294));
+        entries.add(new Entry(12, 296));
+        entries.add(new Entry(13, 294));
+        entries.add(new Entry(14, 299));
+        entries.add(new Entry(15, 299));
+        entries.add(new Entry(16, 305));
+        entries.add(new Entry(17, 309));
+        entries.add(new Entry(18, 332));
+        entries.add(new Entry(19, 359));
+        entries.add(new Entry(20, 390));
+        entries.add(new Entry(21, 401));
+        entries.add(new Entry(22, 405));
+        entries.add(new Entry(23, 384));
 
-        for(int i = 0 ; i <= 23 ; i++){
-            entries.add(new Entry(i, (float) list.indexOf(i));
-        }
+
+
+
+
+
 
         LineDataSet dataSet = new LineDataSet(entries, "Label");
         dataSet.setColors(ColorTemplate.COLORFUL_COLORS);

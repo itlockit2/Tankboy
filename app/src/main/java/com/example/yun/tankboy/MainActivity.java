@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity{
         // 메인 엑티비티 설명
         TextView mainExplainTextView = (TextView) findViewById(R.id.MainExplainTextView);
         mainExplainTextView.setTextSize(Intro.width_pixel/30);
-        mainExplainTextView.setText(Login.userName + " 님의 " + "시간" + " 기준 전력 컨설팅");
+        mainExplainTextView.setText(Login.userName + " 님의 실시간 전력 컨설팅");
 
         // 전구 색 채우기
         ImageView mainLightColorImageView = (ImageView)findViewById(R.id.MainLightColorImageView);
@@ -215,30 +215,9 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-        // 플러스, 마이너스 버튼
-        ImageButton plusButton = (ImageButton) findViewById(R.id.PlusButton);
-        plusButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(validAddTime(nowTimeInt)){
-                    setnowTimeInt(nowTimeInt+1500);
-                } else {
-                    Toast.makeText(MainActivity.this, "현재보다 미래로 갈수는 없습니다.", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
 
-        ImageButton minusButton = (ImageButton) findViewById(R.id.MinusButton);
-        minusButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(validMinusTime(nowTimeInt)){
-                    setnowTimeInt(nowTimeInt-1500);
-                } else {
-                    Toast.makeText(MainActivity.this, "과거데이터가 존재하지 않습니다.없습니다.", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+
+
 
 
     }
@@ -425,7 +404,7 @@ public class MainActivity extends AppCompatActivity{
     private void updateMainScreen(){
         int monthUserData = getSumList(monthList);
         mainLightExplainTextView.setTextSize(Intro.width_pixel/40);
-        mainLightExplainTextView.setText("8월" + "누적 사용량 : " + form.format((monthUserData/1000)) + "kw");
+        mainLightExplainTextView.setText("8월" + " 누적 사용량 : " + form.format((monthUserData/1000)) + "kw");
         if(monthUserData/1000 > 80) {
             HashMap<String, String> map = new HashMap<>();
             map.put("전력분석", "이달의 누적사용량의 80%에 도달하였습니다. 목표 달성을 위해 신중을 기해주세요");

@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">Tankboy</string>
+    <string name="app_name">탱크보이 전력컨설팅</string>
     <string name="title_activity_today_tip">TodayTip</string>
 </resources>
