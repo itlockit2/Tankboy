@@ -181,8 +181,8 @@
             android:background="#0047b2"
             android:padding="5sp">
 
-            <Button
-                android:id="@+id/TodayTipButton"
+            <TextView
+                android:id="@+id/TodayTipTextView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

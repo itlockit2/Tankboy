@@ -29,11 +29,7 @@
             android:name=".TodayTip"
             android:label="@string/title_activity_today_tip"
             android:theme="@style/AppTheme.NoActionBar" />
-<<<<<<< HEAD
-        <receiver android:name=".AlarmNotificationReceiver"/>
-=======
         <activity android:name=".TimeChange"></activity>
->>>>>>> 7b759e5e6264c089908f75cffe5f26b70fd9b28a
     </application>
 
 
