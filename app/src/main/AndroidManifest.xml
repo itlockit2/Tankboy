@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.yun.tankboy">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <application
         android:allowBackup="true"
         android:icon="@drawable/launcher"
@@ -27,7 +29,12 @@
             android:name=".TodayTip"
             android:label="@string/title_activity_today_tip"
             android:theme="@style/AppTheme.NoActionBar" />
+<<<<<<< HEAD
+        <receiver android:name=".AlarmNotificationReceiver"/>
+=======
         <activity android:name=".TimeChange"></activity>
+>>>>>>> 7b759e5e6264c089908f75cffe5f26b70fd9b28a
     </application>
+
 
 </manifest>
