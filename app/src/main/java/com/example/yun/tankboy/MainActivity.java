@@ -101,7 +101,6 @@ public class MainActivity extends AppCompatActivity{
 
         randomGenerator = new Random();
         form = new DecimalFormat("#.##");
-        notification.setAutoCancel(true);
 
         nm = (NotificationManager) getSystemService (NOTIFICATION_SERVICE);
         // Firebase
@@ -215,7 +214,9 @@ public class MainActivity extends AppCompatActivity{
 
 
 
-
+        double randomDouble = randomGenerator.nextDouble();
+        randomDouble = randomDouble * 1.2 + 1;
+        Toast.makeText(this, "날씨가 더운 오늘 목표치를 위해서는 에어컨을"  + form.format(randomDouble) + "시간 틀어야 합니다.", Toast.LENGTH_SHORT).show();
 
     }
     // 시간 검증
@@ -327,13 +328,7 @@ public class MainActivity extends AppCompatActivity{
     }
     // 기온 데이터
     private void updateTemperature(double temp){
-        double randomDouble = randomGenerator.nextDouble();
-        randomDouble = randomDouble * 1.2 + 1;
         temperatureTextView.setText("기온 : " + form.format(temp));
-        if(temp > 30){
-            Toast.makeText(this, "날씨가 더운 오늘 목표치를 위해서는 에어컨을"  + form.format(randomDouble) + "시간 틀어야 합니다.", Toast.LENGTH_SHORT).show();
-
-        }
     }
 
     // 오늘 하루 사용량

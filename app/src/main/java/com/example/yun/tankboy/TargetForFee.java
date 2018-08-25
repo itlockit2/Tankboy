@@ -33,7 +33,7 @@ public class TargetForFee extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 targetForFee = Integer.parseInt(inputTargetEditText.getText().toString());
-                Intent intent = new Intent(TargetForFee.this, TimeChange.class);
+                Intent intent = new Intent(TargetForFee.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }
