@@ -85,7 +85,7 @@ public class Compare extends AppCompatActivity {
             ArrayList<Entry> values = new ArrayList<Entry>();
             int[] coef = {991, 850, 766, 718, 695, 692, 763, 881, 941, 961, 973
                     ,983 ,1008, 1015, 1008, 1018, 1046, 1102, 1188, 1285, 1340, 1340, 1282, 1151};
-            double curConsumption = 320*1000/30/24/4;
+            double curConsumption = 320*1000/30/24;
             for (int i = 0; i <= 23; i++) {
                 double val =  curConsumption*(coef[i] + randomRange(-10, 10))/1000- z*20;
                 values.add(new Entry(i, (int) val));
