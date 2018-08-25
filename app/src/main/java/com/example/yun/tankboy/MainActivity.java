@@ -179,16 +179,6 @@ public class MainActivity extends AppCompatActivity{
         temperatureTextView = (TextView)findViewById(R.id.TemperatureTextView);
         temperatureTextView.setTextSize(Intro.width_pixel/30);
 
-        // 오늘의 팁 버튼
-        Button todayTipButton = (Button)findViewById(R.id.TodayTipButton);
-        todayTipButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, TodayTip.class);
-                startActivity(intent);
-                finish();
-            }
-        });
 
         // 달력 버튼
         ImageButton callendarButton = (ImageButton) findViewById(R.id.CallendarButton);

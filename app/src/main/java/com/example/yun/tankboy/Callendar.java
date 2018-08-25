@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
@@ -50,7 +51,6 @@ public class Callendar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_callendar);
 
-<<<<<<< HEAD
 
         // Firebase
         mFirebaseDatabase = mFirebaseDatabase.getInstance();
@@ -114,7 +114,7 @@ public class Callendar extends AppCompatActivity {
     }
 
     private void drawChart(ArrayList<Double> list){
-=======
+
         // 몇 월인지 보여줌
         TextView monthTextView = (TextView) findViewById(R.id.MonthTextView);
         monthTextView.setTextSize(Intro.width_pixel / 30);
@@ -124,7 +124,6 @@ public class Callendar extends AppCompatActivity {
     }
 
     private void drawChart(){
->>>>>>> 7b759e5e6264c089908f75cffe5f26b70fd9b28a
         LineChart chart1 = (LineChart) findViewById(R.id.RealChart);
 
         chart1.setDrawGridBackground(false);
@@ -168,17 +167,6 @@ public class Callendar extends AppCompatActivity {
         entries.add(new Entry(22, 405));
         entries.add(new Entry(23, 384));
 
-
-
-
-
-
-<<<<<<< HEAD
-        for(int i = 0 ; i <= 23 ; i++){
-            entries.add(new Entry(i, (float) list.indexOf(i)));
-        }
-=======
->>>>>>> 7b759e5e6264c089908f75cffe5f26b70fd9b28a
 
         LineDataSet dataSet = new LineDataSet(entries, "Label");
         dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
