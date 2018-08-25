@@ -25,11 +25,13 @@
         <activity android:name=".Callendar" />
         <activity android:name=".Compare" />
         <activity android:name=".Tip" />
+        <activity android:name=".TimeChange"></activity>
         <activity
             android:name=".TodayTip"
             android:label="@string/title_activity_today_tip"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".TimeChange"></activity>
+        <receiver android:name=".AlarmNotificationReceiver"/>
+
     </application>
 
 
