@@ -135,6 +135,9 @@ public class MainActivity extends AppCompatActivity{
         dayTimeInt = nowTimeInt / 1000000;
         dayTimeInt = dayTimeInt * 1000000;
 
+        double randomDouble = randomGenerator.nextDouble();
+        randomDouble = randomDouble * 1.2 + 1;
+
         // 하루그날부터 지금시간까지의 합
         showOnedayUse(dayTimeInt, nowTimeInt);
         // 한달시작부터 지금시간까지의 합
@@ -143,6 +146,10 @@ public class MainActivity extends AppCompatActivity{
         showOnedayRecommend(monthTimeInt,dayTimeInt);
         // 하루시작부터 지금시간까지로 탐색
         showTemperature(dayTimeInt, nowTimeInt);
+
+        // 오늘의 팁
+        TextView todayTipTextView = (TextView) findViewById(R.id.TodayTipTextView);
+        todayTipTextView.setText("날씨가 더운 오늘 목표치를 위해서는 에어컨을"  + form.format(randomDouble) + "시간 틀어야 합니다.");
 
         // 메인 엑티비티 설명
         TextView mainExplainTextView = (TextView) findViewById(R.id.MainExplainTextView);
@@ -214,8 +221,7 @@ public class MainActivity extends AppCompatActivity{
 
 
 
-        double randomDouble = randomGenerator.nextDouble();
-        randomDouble = randomDouble * 1.2 + 1;
+
         Toast.makeText(this, "날씨가 더운 오늘 목표치를 위해서는 에어컨을"  + form.format(randomDouble) + "시간 틀어야 합니다.", Toast.LENGTH_SHORT).show();
 
     }
